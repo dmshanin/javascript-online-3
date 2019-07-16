@@ -27,9 +27,7 @@ const some = function (arr, callback, thisArg) {
         throw new Error('second parameter is not a function type');
     }
 
-    let i;
-    const length = arr.length;
-    for (i = 0; i < length; i = i + 1) {
+    for (let i = 0; i < arr.length; i++) {
         if (callback.call(thisArg, arr[i], i, arr)) {
             return true;
         }
