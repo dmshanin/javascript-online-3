@@ -16,16 +16,25 @@
 
 // Решение
 function shallowMerge (obj1, obj2) {
-    let result = Object.assign(obj1);
+    // каждый из которых должен быть обычным JavaScript объектом
+    if (typeof obj1 !== 'object' && typeof obj2 !== 'object') {
+        throw new Error('one or both parameters is not a object type');
+    }
+
+    let result = Object.assign({}, obj1);
+
+    Object.getOwnPropertyNames(obj1).forEach(function forEachOwnPropertyName (name) {
+        const descriptor = Object.getOwnPropertyDescriptor(obj1, name);
+        Object.defineProperty(result, name, descriptor);
+    });
 
     Object.getOwnPropertyNames(obj2).forEach(function forEachOwnPropertyName (name) {
-        var descriptor = Object.getOwnPropertyDescriptor(obj2, name);
+        const descriptor = Object.getOwnPropertyDescriptor(obj2, name);
         Object.defineProperty(result, name, descriptor);
     });
 
     return result
 }
-
 
 const user = { firstName: 'Marcus', lastName: 'Kronenberg' };
 const userData = { job: 'developer', country: 'Germany', lastName: 'Schmidt' };
