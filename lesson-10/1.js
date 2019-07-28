@@ -21,6 +21,28 @@
  */
 
 // Решение
+function bind(fn, context) {
+    // Первый параметр не является типом function
+    if (typeof fn !== 'function') {
+        throw new Error('first parameter is not a function type');
+    }
+
+    // Второй параметр не является типом object
+    if (typeof context !== 'object') {
+        throw new Error('second parameter is not a object type');
+    }
+
+    // Второй параметр является массивом
+    if (Array.isArray(context)) {
+        throw new Error('second parameter is a array type');
+    }
+
+    const bindArgs = [].slice.call(arguments, 2);
+    return function() {
+        const fnArgs = [].slice.call(arguments);
+        return fn.apply(context, bindArgs.concat(fnArgs));
+    };
+}
 
 function getName(greeting, message) {
     return `${greeting} ${message} ${this.name}.`;

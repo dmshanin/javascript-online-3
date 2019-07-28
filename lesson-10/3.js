@@ -23,6 +23,38 @@
  */
 
 // Решение
+function calculateAdvanced() {
+    // должна возвращать объект с двумя свойствами: `value` и `errors`
+    const result = {
+        value: undefined,
+        errors: []
+    };
+
+    Object.keys(arguments).forEach((index) => {
+        // Любой из аргументов не является функцией.
+        if (typeof arguments[index] !== 'function') {
+            throw new Error('argument is not a function type');
+        }
+
+        try {
+            const resultThis = arguments[index](typeof result.value !== 'undefined' ? result.value : undefined);
+
+            if (typeof resultThis !== 'undefined') {
+                result.value = resultThis; // свойство `value` содержит результат вычисления всех функций из цепочки;
+            } else {
+                throw new Error(`callback at index ${index} did not return any value.`);
+            }
+        } catch (error) { // Если во время выполнения функции-коллбека возникла ошибка, результат выполнения она не вернёт.
+            result.errors.push({ // свойство `errors` содержит массив с объектами, где каждый объект должен обладать следующими свойствами:
+                index, // индекс коллбека, на котором ошибка была возбуждена;
+                name: error.name, // имя ошибки;
+                message: error.message // сообщение ошибки.
+            })
+        }
+    });
+
+    return result;
+}
 
 const result = calculateAdvanced(
     () => {},
