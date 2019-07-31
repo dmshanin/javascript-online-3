@@ -12,6 +12,30 @@
  */
 
 // Решение
+function createFibonacciGenerator() {
+    let currentCounter = 1;
+
+    function fib(n) {
+        let a = 1,
+            b = 1;
+        for (let i = 3; i <= n; i++) {
+            let c = a + b;
+            a = b;
+            b = c;
+        }
+        currentCounter++;
+        return b;
+    }
+
+    return {
+        print () {
+            return fib(currentCounter);
+        },
+        reset () {
+            currentCounter = 1;
+        }
+    }
+}
 
 const generator1 = createFibonacciGenerator();
 

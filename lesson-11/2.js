@@ -10,6 +10,21 @@
  */
 
 // Решение
+function createFibonacciGenerator() {
+    let currentCounter = 1;
+
+    return function fib() {
+        let a = 1,
+            b = 1;
+        for (let i = 3; i <= currentCounter; i++) {
+            let c = a + b;
+            a = b;
+            b = c;
+        }
+        currentCounter++;
+        return b;
+    }
+}
 
 const generateFibonacciNumber = createFibonacciGenerator();
 

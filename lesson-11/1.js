@@ -17,9 +17,27 @@
 
 // Решение
 function createNumberGenerator() {
-    return function () {
-        
+    const min = 1;
+    const max = 100;
+    const randomArray = [];
+    let currentCounter = 0;
+
+    for (let i = min; i < max; i++) {
+        const temp = Math.floor(min + Math.random() * max);
+        if (randomArray.indexOf(temp) === -1) {
+            randomArray.push(temp);
+        } else {
+            i--;
+        }
     }
+
+    return function () {
+        if (currentCounter < randomArray.length) {
+            return randomArray[currentCounter++];
+        } else {
+            throw new Error('No more items.');
+        }
+    };
 }
 
 const TOTAL_ITERATIONS = 101;

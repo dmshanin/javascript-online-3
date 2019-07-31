@@ -27,6 +27,37 @@
  */
 
 // Решение
+function createLogger() {
+
+    const callsStack = [];
+
+    return {
+        call (fn) {
+            if (typeof fn !== 'function') {
+                throw new Error('first parameter is not a function type');
+            }
+
+            const params = Array.from(arguments);
+            params.splice(0, 1);
+
+            const fnName = fn.name;
+            const fnIn = arguments.length === 1 ? [] : params;
+            const fnCall = fn(...params);
+            const fnOut = typeof fnCall !== 'undefined' ? fnCall : undefined;
+
+            callsStack.push({
+                name: fnName,
+                in: fnIn,
+                out: fnOut,
+            });
+
+            return fn(...params);
+        },
+        print () {
+            return callsStack;
+        }
+    }
+}
 
 const returnIdentity = n => n;
 const sum = (a, b) => a + b;
