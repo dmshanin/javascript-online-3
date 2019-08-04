@@ -11,26 +11,30 @@
  */
 
 // Решение
+const week = {
+    1: 'Воскресенье',
+    2: 'Понедельник',
+    3: 'Вторник',
+    4: 'Среда',
+    5: 'Четверг',
+    6: 'Пятница',
+    7: 'Суббота',
+};
+
 const f = function(dayNumber) {
-    if (typeof dayNumber === 'number') {
-        if (dayNumber > 0 && dayNumber < 8) {
-            const week = [];
+    if (arguments.length > 1) {
+        throw new Error('should be one parameters');
+    }
 
-            week[1] = 'Воскресенье';
-            week[2] = 'Понедельник';
-            week[3] = 'Вторник';
-            week[4] = 'Среда';
-            week[5] = 'Четверг';
-            week[6] = 'Пятница';
-            week[7] = 'Суббота';
-
-            return week[dayNumber];
-        } else {
-            throw new Error('parameter should be in the range of 1 to 7');
-        }
-    } else {
+    if (typeof dayNumber !== 'number') {
         throw new Error('parameter type is not a Number');
     }
+
+    if (dayNumber < 1 || dayNumber > 7) {
+        throw new Error('parameter should be in the range of 1 to 7');
+    }
+
+    return week[dayNumber];
 };
 
 /* не удалять */

@@ -17,7 +17,7 @@ const array = [1, 2, -4, 3, -9, -1, 7];
 // Решение
 const isPositive = function(number) {
     if (typeof number === 'number') {
-        return number > 0 ? true : number < 0 ? false : null;
+        return number > 0;
     } else {
         throw new Error('parameter type is not a Number');
     }

@@ -10,21 +10,11 @@
 
 // Решение
 const f = function(value) {
-    if (typeof value === 'number') {
-
-        let result = value;
-
-        for (let i = 1; i < 3; i++) {
-            result *= value;
-        }
-
-        // можно было бы просто пеермножить, скорее всего так даже работать будет быстрее:
-        // result = value * value * value;
-
-        return result;
-    } else {
+    if (typeof value !== 'number') {
         throw new Error('parameter is not a number type');
     }
+
+    return Math.pow(value, 3); // value ** 3
 };
 
 /* не удалять */

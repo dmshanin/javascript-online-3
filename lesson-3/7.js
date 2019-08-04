@@ -11,23 +11,23 @@
 
 // Решение
 const getDivisors = function(number) {
-    if (typeof number === 'number') {
-        if (number !== 0) {
-            const arrayDivisors = [];
-
-            for (let i = 1; i <= number; i++) {
-                if (number % i === 0) {
-                    arrayDivisors.push(i);
-                }
-            }
-
-            return arrayDivisors;
-        } else {
-            throw new Error('parameter can\'t be a 0');
-        }
-    } else {
+    if (typeof number !== 'number') {
         throw new Error('parameter type is not a Number');
     }
+
+    if (number <= 0) {
+        throw new Error('parameter can\'t be a 0');
+    }
+
+    const arrayDivisors = [];
+
+    for (let i = 1; i <= number; i++) {
+        if (number % i === 0) {
+            arrayDivisors.push(i);
+        }
+    }
+
+    return arrayDivisors;
 };
 
 /* не удалять */

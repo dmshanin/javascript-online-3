@@ -11,10 +11,18 @@
 
 // Решение
 const f = function(p1, p2, p3) {
-    for (let i = 0; i < arguments.length; i++) {
-        if (typeof arguments[i] !== 'number') {
-            throw new Error('all parameters should be a Number type');
-        }
+    // for (let i = 0; i < arguments.length; i++) {
+    //     if (typeof arguments[i] !== 'number') {
+    //         throw new Error('all parameters should be a Number type');
+    //     }
+    // }
+
+    if (typeof p1 !== 'number' || typeof p2 !== 'number' || typeof p3 !== 'number') {
+        throw new Error('all parameters type should be a Number');
+    }
+
+    if (arguments.length !== 3) {
+        throw new Error('function takes not three parameters');
     }
 
     return (p1 - p2) / p3;
