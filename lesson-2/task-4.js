@@ -33,7 +33,4 @@ switch (value) {
     case 3:
         console.log('2,3');
         break;
-
-    default:
-        break;
 }

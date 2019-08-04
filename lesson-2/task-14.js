@@ -9,9 +9,9 @@
 let n = 1000;
 let num = 0;
 
-do {
+while (n >= 50) {
     num++;
     n = n / 2;
-} while (n >= 50);
+}
 
 console.log(n, num);

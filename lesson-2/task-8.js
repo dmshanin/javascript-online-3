@@ -15,8 +15,10 @@ const array = [1, 2, 3, 4];
 let result = 0;
 
 for (let i = 0; i < array.length; i++) {
-    if (array[i] % 2 === 0 && array[i] > 3) {
-        result = result + array[i];
+    const currentItem = array[i];
+
+    if (currentItem % 2 === 0 && currentItem > 3) {
+        result += currentItem; // result = result + currentItem;
     }
 }
 

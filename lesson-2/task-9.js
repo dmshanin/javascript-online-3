@@ -15,9 +15,12 @@ const arr = [1, 2, 3, 4, 5, 6];
 
 for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr.length; j++) {
-        if (arr[i] > arr[j]) {
-            let memory = arr[i];
-            arr[i] = arr[j];
+        const currentItem = arr[i];
+        const sortItem = arr[j];
+
+        if (currentItem > sortItem) {
+            let memory = currentItem;
+            arr[i] = sortItem;
             arr[j] = memory;
         }
     }
