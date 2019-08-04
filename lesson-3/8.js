@@ -18,19 +18,19 @@
 // "Дан массив с числами `[1, 2, 3]`" - возможно имелось ввиду, что необходмо установить дефолтное значение для входного параметра
 // Если нужно дефолтное значение, то первая строчка этой функции будет выглядеть так: const f = function (array = [1, 2, 3]) {
 const f = function (array) {
-    if (typeof array === 'object') {
-        if (array.length ) {
-            console.log(array[0]);
-
-            array.splice(0, 1);
-
-            f(array);
-        } else {
-            throw new Error('parameter can\'t be an empty');
-        }
-    } else {
+    if (!Array.isArray(array)) {
         throw new Error('parameter type should be an array');
     }
+
+    if (array.length === 0) {
+        throw new Error('parameter can\'t be an empty');
+    }
+
+    console.log(array[0]);
+
+    array.splice(0, 1);
+
+    f(array);
 };
 
 /* не удалять */
