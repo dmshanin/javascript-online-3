@@ -23,13 +23,13 @@
 Function.prototype.delay = function (ms) {
     const fn = this;
 
-    // fn();
-
-    return function () {
-        const params = Array.from(arguments);
-
-        fn.apply(this, [...params])
-    };
+    if (this.length > 0) {
+        return function () {
+            setTimeout(fn, ms, ...arguments);
+        };
+    } else {
+        setTimeout(fn, ms);
+    }
 };
 
 function sayHello() {
